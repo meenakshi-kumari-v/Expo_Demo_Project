@@ -2,7 +2,9 @@ import { create } from "zustand";
 
 type Booking = {
   id: number;
-  propertyId: number;
+  title: string;
+  price: number;
+  images: string[];
 };
 
 type Store = {
@@ -16,10 +18,10 @@ export const useBookingStore = create<Store>((set) => ({
   addBooking: (booking) =>
     set((state) => {
       const alreadyBooked = state.bookings.some((b) => b.id === booking.id);
-      if(alreadyBooked) return state;
+      if (alreadyBooked) return state;
       return {
         bookings: [...state.bookings, booking],
-      }
+      };
     }),
   removeBooking: (bookingId) =>
     set((state) => ({
